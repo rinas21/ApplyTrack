@@ -4,34 +4,64 @@
 !.env.example
 *.pem
 *.key
+*.p12
+*.pfx
+*secret*
+*credentials*.json
 
-# Node / Angular
+# Node / Angular / frontend
 node_modules/
 dist/
 .angular/
+.angular/cache/
 coverage/
+.nyc_output/
 npm-debug.log*
 yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
 
-# Rust
+# Rust / backend
 target/
 **/*.rs.bk
+# Keep Cargo.lock committed (application binaries/services)
 
-# IDE
+# Extension
+*.crx
+*.pem
+
+# IDE / editor
 .vscode/*
 !.vscode/extensions.json
 !.vscode/launch.json
 !.vscode/tasks.json
 .idea/
 *.swp
+*.swo
+*~
 
 # OS
 .DS_Store
 Thumbs.db
+desktop.ini
 
-# Docker/local data
+# Docker / local data / overrides
 data/
 postgres-data/
+docker-compose.override.yml
+*.override.yml
+!docker-compose.yml
 
-# Build artifacts
+# Build/test artifacts and logs
 *.log
+logs/
+tmp/
+.temp/
+playwright-report/
+test-results/
+
+# Local DB files
+*.sqlite
+*.sqlite3
+*.db
+
