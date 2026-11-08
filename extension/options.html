@@ -1,0 +1,12 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>ApplyTrack Extension Settings</title>
+<style>body{font:14px system-ui,sans-serif;max-width:720px;margin:24px auto;padding:0 16px;background:#0f1730;color:#e8eefc}.card{background:#141b2d;border:1px solid #26314f;border-radius:10px;padding:14px;margin-bottom:12px}label{display:block;color:#9fb0d0;font-size:12px;margin:8px 0 2px}input{width:100%;box-sizing:border-box;background:#0b1020;color:#e8eefc;border:1px solid #26314f;border-radius:8px;padding:8px}button{background:#5b8cff;color:#fff;border:0;border-radius:8px;padding:8px 12px;cursor:pointer;font-weight:600}.muted{color:#9fb0d0}code{background:#0b1020;padding:2px 4px;border-radius:4px}</style></head>
+<body><h1>ApplyTrack Extension</h1>
+<div class="card"><h3>Connection</h3>
+<p class="muted">Configure the ApplyTrack API and authentication. For local development you can paste an access token from the web app session (browser devtools/storage) or use a backend dev bypass only in local environments. Production should use the Keycloak PKCE flow via the <code>applytrack-extension</code> public client.</p>
+<label>API base URL</label><input id="apiBaseUrl" placeholder="http://localhost:8080/api/v1">
+<label>Access token (Bearer)</label><input id="accessToken" placeholder="Paste token for local/dev testing">
+<button id="save">Save settings</button> <span id="msg" class="muted"></span>
+</div>
+<div class="card"><h3>Security notes</h3><ul class="muted"><li>Never store Keycloak admin credentials in the extension.</li><li>Never expose OAuth refresh tokens in extension or frontend code.</li><li>Use PKCE public clients only.</li><li>The extension sends captured job data only to the configured ApplyTrack API.</li></ul></div>
+<script type="module" src="dist/options.js"></script></body></html>

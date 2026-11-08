@@ -1,0 +1,28 @@
+{
+  "manifest_version": 3,
+  "name": "ApplyTrack Job Capture",
+  "version": "0.1.0",
+  "description": "Capture job details and save them to your ApplyTrack account.",
+  "permissions": ["storage", "activeTab", "scripting"],
+  "host_permissions": [
+    "https://www.linkedin.com/*",
+    "https://*.indeed.com/*",
+    "http://localhost:8080/*"
+  ],
+  "action": {
+    "default_title": "ApplyTrack",
+    "default_popup": "popup.html"
+  },
+  "options_page": "options.html",
+  "background": {
+    "service_worker": "dist/background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://www.linkedin.com/jobs/*", "https://*.indeed.com/*"],
+      "js": ["dist/content/index.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}

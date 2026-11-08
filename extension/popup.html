@@ -1,0 +1,18 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ApplyTrack</title>
+<style>body{font:14px system-ui,sans-serif;margin:0;min-width:360px;background:#0f1730;color:#e8eefc}main{padding:12px}.card{background:#141b2d;border:1px solid #26314f;border-radius:10px;padding:10px;margin-bottom:10px}label{display:block;color:#9fb0d0;font-size:12px;margin:6px 0 2px}input,textarea{width:100%;box-sizing:border-box;background:#0b1020;color:#e8eefc;border:1px solid #26314f;border-radius:8px;padding:8px}button{background:#5b8cff;color:#fff;border:0;border-radius:8px;padding:8px 10px;cursor:pointer;font-weight:600;margin-right:6px}.secondary{background:#1b2440;border:1px solid #26314f}.muted{color:#9fb0d0;font-size:12px}.pill{display:inline-block;padding:2px 8px;border-radius:999px;background:#1b2440;border:1px solid #26314f;font-size:12px}</style></head>
+<body><main>
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;"><strong>ApplyTrack</strong><a href="options.html" target="_blank" style="color:#5b8cff">Settings</a></div>
+  <div id="status" class="muted">Detecting job...</div>
+  <div class="card">
+    <label>Company</label><input id="company">
+    <label>Job title</label><input id="title">
+    <label>Location</label><input id="location">
+    <label>Job URL</label><input id="url">
+    <label>Description (optional)</label><textarea id="description" rows="3"></textarea>
+    <div style="margin-top:8px;"><label style="display:flex;gap:6px;color:#e8eefc"><input type="checkbox" id="applied" style="width:auto"> Mark as applied (confirmed by me)</label></div>
+    <div style="margin-top:10px;"><button id="save">Save to ApplyTrack</button><button id="refresh" class="secondary">Refresh</button></div>
+    <div id="result" class="muted" style="margin-top:8px;"></div>
+  </div>
+  <div class="card"><strong>Recently saved</strong><div id="recent" class="muted">Loading...</div></div>
+</main><script type="module" src="dist/popup.js"></script></body></html>

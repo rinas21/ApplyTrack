@@ -1,0 +1,7 @@
+import { Component, OnInit, signal } from '@angular/core';
+import { DatePipe } from '@angular/common';
+import { ApiService } from '../../core/services/api.service';
+
+@Component({ standalone:true, imports:[DatePipe], template:`<div class="page"><div class="topbar"><div><h1>Email Activity</h1><div class="muted">Detected recruitment events, matches, and confidence. Users can correct matches.</div></div><button class="btn secondary" (click)="load()">Refresh</button></div>
+<div class="card">@if(!items().length){<p class="muted">No email events yet. Connect Gmail in Settings and run sync (requires Google OAuth credentials).</p>}@else{<table><thead><tr><th>When</th><th>From</th><th>Subject</th><th>Event</th><th>Match</th><th></th></tr></thead><tbody>@for(e of items();track e.id){<tr><td>{{e.event_timestamp | date:'medium'}}</td><td>{{e.from||'—'}}</td><td>{{e.subject||e.snippet||'—'}}</td><td><span class="pill">{{e.event_type||'unknown'}}</span></td><td><span class="pill">{{e.match_status||'unmatched'}}</span></td><td>@if(e.match_id){<button class="btn secondary" (click)="reject(e.match_id)">Reject match</button>}</td></tr>}</tbody></table>}</div></div>` })
+export class EmailActivityComponent implements OnInit { items=signal<any[]>([]); constructor(private api:ApiService){} ngOnInit(){this.load();} load(){this.api.get<any[]>('/email/activity').subscribe(d=>this.items.set(d||[]));} reject(id:string){ this.api.patch(`/email/matches/${id}`,{status:'rejected'}).subscribe(()=>this.load()); } }
